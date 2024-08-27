@@ -11,6 +11,24 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        {{-- new select option  --}}
+                        <div class="row mb-4">
+                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="role" class="form-select @error('role') is-invalid @enderror" name="role" required>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                </select>
+
+                                @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -24,6 +42,7 @@
                                 @enderror
                             </div>
                         </div>
+
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
